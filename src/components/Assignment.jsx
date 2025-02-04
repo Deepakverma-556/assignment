@@ -10,7 +10,9 @@ const Assignment = () => {
         firstName: "",
         lastName: "",
         email: "",
+        address: "",
     });
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setMyArray([...myArray, formValue]);
@@ -18,15 +20,19 @@ const Assignment = () => {
             firstName: "",
             lastName: "",
             email: "",
+            address: "",
         });
-        toast.success("Add Successfully")
+        toast.success("Added Successfully");
     }
+
     const doesObjectContain = (item) => {
         const searchTerm = mySearch.toLowerCase();
         return (
             item.firstName.toLowerCase().includes(searchTerm) ||
             item.lastName.toLowerCase().includes(searchTerm) ||
-            item.email.toLowerCase().includes(searchTerm));
+            item.email.toLowerCase().includes(searchTerm) ||
+            item.address.toLowerCase().includes(searchTerm)
+        );
     }
 
     return (
@@ -37,6 +43,7 @@ const Assignment = () => {
                 <MyInput customOnChange={(e) => setFormValue({ ...formValue, firstName: e.target.value })} myValue={formValue.firstName} customId="firstName" customType="text" myPlaceholder="First Name" />
                 <MyInput customOnChange={(e) => setFormValue({ ...formValue, lastName: e.target.value })} myValue={formValue.lastName} customId="lastName" customType="text" myPlaceholder="Last Name" />
                 <MyInput customOnChange={(e) => setFormValue({ ...formValue, email: e.target.value })} myValue={formValue.email} customId="email" customType="email" myPlaceholder="Email" />
+                <MyInput customOnChange={(e) => setFormValue({ ...formValue, address: e.target.value })} myValue={formValue.address} customId="address" customType="text" myPlaceholder="Address" />
                 <button className='bg-white flex max-w-max mx-auto px-4 py-1 rounded-xl'>Add</button>
             </form>
             <input required id='search' onChange={(e) => setMySearch(e.target.value)} value={mySearch} type="text" placeholder='Search' className='px-2 bg-transparent outline-none rounded-lg py-1 border border-black mt-2' />
@@ -54,6 +61,7 @@ const Assignment = () => {
                             <td className='border border-black py-1 px-2'>{item.firstName}</td>
                             <td className='border border-black py-1 px-2'>{item.lastName}</td>
                             <td className='border border-black py-1 px-2'>{item.email}</td>
+                            <td className='border border-black py-1 px-2'>{item.address}</td>
                         </tr>
                     })}
                 </tbody>
